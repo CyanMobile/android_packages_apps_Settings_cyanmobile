@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--  Copyright (C) 2007 The Android Open Source Project
+<!--
+      Copyright (C) 2007 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -12,10 +13,10 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
- -->
+-->
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
     <string name="yes" msgid="4676390750360727396">"Igen"</string>
     <string name="no" msgid="6731231425810196216">"Nem"</string>
     <string name="device_info_default" msgid="7847265875578739287">"Ismeretlen"</string>
@@ -45,16 +46,16 @@
     <string name="radioInfo_display_asu" msgid="1422248392727818082">"asu"</string>
     <string name="radioInfo_lac" msgid="8415219164758307156">"LAC"</string>
     <string name="radioInfo_cid" msgid="4362599198392643138">"CID"</string>
-    <string name="sdcard_unmount" product="nosdcard" msgid="6325292633327972272">"USB-tár leválasztása"</string>
-    <string name="sdcard_unmount" product="default" msgid="3364184561355611897">"SD-kártya leválasztása"</string>
-    <string name="sdcard_format" product="nosdcard" msgid="6285310523155166716">"USB-tár törlése"</string>
-    <string name="sdcard_format" product="default" msgid="6713185532039187532">"SD-kártya törlése"</string>
+    <string name="sdcard_unmount" msgid="6325292633327972272" product="nosdcard">"USB-tár leválasztása"</string>
+    <string name="sdcard_unmount" msgid="3364184561355611897" product="default">"SD-kártya leválasztása"</string>
+    <string name="sdcard_format" msgid="6285310523155166716" product="nosdcard">"USB-tár törlése"</string>
+    <string name="sdcard_format" msgid="6713185532039187532" product="default">"SD-kártya törlése"</string>
     <string name="small_font" msgid="2295331917424072635">"Kicsi"</string>
     <string name="medium_font" msgid="2068475425515133701">"Közepes"</string>
     <string name="large_font" msgid="599055175160971446">"Nagy"</string>
     <string name="font_size_save" msgid="3450855718056759095">"OK"</string>
-    <string name="sdcard_setting" product="nosdcard" msgid="8281011784066476192">"USB-tár"</string>
-    <string name="sdcard_setting" product="default" msgid="5922637503871474866">"SD-kártya"</string>
+    <string name="sdcard_setting" msgid="8281011784066476192" product="nosdcard">"USB-tár"</string>
+    <string name="sdcard_setting" msgid="5922637503871474866" product="default">"SD-kártya"</string>
     <string name="battery_info_status_label" msgid="8109155295509700309">"Akkumulátor állapota:"</string>
     <string name="battery_info_power_label" msgid="7465140230991349382">"Áramforrás:"</string>
     <string name="battery_info_scale_label" msgid="3649763192389778437">"Akkuskála:"</string>
@@ -136,6 +137,7 @@
     <string name="display_font_size_label" msgid="8941851418397475389">"Betűméret:"</string>
     <!-- no translation found for intent_sender_data_label (6332324780477289261) -->
     <skip />
+
     <string name="intent_sender_sendbroadcast_text" msgid="1415735148895872715">"Küldés <xliff:g id="BROADCAST">broadcast</xliff:g>"</string>
     <string name="intent_sender_action_label" msgid="616458370005452389">"<xliff:g id="ACTION">Action</xliff:g>:"</string>
     <string name="intent_sender_startactivity_text" msgid="5080516029580421895">"<xliff:g id="ACTIVITY">activity</xliff:g> indítása"</string>
@@ -191,20 +193,20 @@
     <string name="sdcard_changes_instructions" msgid="1364712901180556244">"A módosítások az USB-kábel újracsatlakoztatásakor lépnek életbe"</string>
     <string name="sdcard_settings_screen_mass_storage_text" msgid="3741220147296482474">"USB-háttértár engedélyezése"</string>
     <string name="sdcard_settings_total_bytes_label" msgid="9184160745785062144">"Összes bájt:"</string>
-    <string name="sdcard_settings_not_present_status" product="nosdcard" msgid="2902787003418172125">"Az USB-tár nincs csatolva"</string>
-    <string name="sdcard_settings_not_present_status" product="default" msgid="6666688653496819947">"Hiányzó SD-kártya"</string>
+    <string name="sdcard_settings_not_present_status" msgid="2902787003418172125" product="nosdcard">"Az USB-tár nincs csatolva"</string>
+    <string name="sdcard_settings_not_present_status" msgid="6666688653496819947" product="default">"Hiányzó SD-kártya"</string>
     <string name="sdcard_settings_available_bytes_label" msgid="763232429899373001">"Rendelkezésre álló bájtok:"</string>
-    <string name="sdcard_settings_mass_storage_status" product="nosdcard" msgid="2736378870889777857">"Az USB-tár használatos tárhelyként"</string>
-    <string name="sdcard_settings_mass_storage_status" product="default" msgid="4786433969313661655">"Az SD-kártya használata háttértárként"</string>
-    <string name="sdcard_settings_unmounted_status" product="nosdcard" msgid="7503300818792750913">"Az USB-tár eltávolítható"</string>
-    <string name="sdcard_settings_unmounted_status" product="default" msgid="3812022095683863087">"Most már biztonságosan eltávolíthatja az SD-kártyát"</string>
-    <string name="sdcard_settings_bad_removal_status" product="nosdcard" msgid="7761390725880773697">"USB-tárat használat közben távolították el"</string>
-    <string name="sdcard_settings_bad_removal_status" product="default" msgid="5145797653495907970">"Az SD-kártyát használat közben távolították el!"</string>
+    <string name="sdcard_settings_mass_storage_status" msgid="2736378870889777857" product="nosdcard">"Az USB-tár használatos tárhelyként"</string>
+    <string name="sdcard_settings_mass_storage_status" msgid="4786433969313661655" product="default">"Az SD-kártya használata háttértárként"</string>
+    <string name="sdcard_settings_unmounted_status" msgid="7503300818792750913" product="nosdcard">"Az USB-tár eltávolítható"</string>
+    <string name="sdcard_settings_unmounted_status" msgid="3812022095683863087" product="default">"Most már biztonságosan eltávolíthatja az SD-kártyát"</string>
+    <string name="sdcard_settings_bad_removal_status" msgid="7761390725880773697" product="nosdcard">"USB-tárat használat közben távolították el"</string>
+    <string name="sdcard_settings_bad_removal_status" msgid="5145797653495907970" product="default">"Az SD-kártyát használat közben távolították el!"</string>
     <string name="sdcard_settings_used_bytes_label" msgid="8820289486001170836">"Felhasznált bájtok:"</string>
-    <string name="sdcard_settings_scanning_status" product="nosdcard" msgid="7503429447676219564">"Média keresése az USB-táron"</string>
-    <string name="sdcard_settings_scanning_status" product="default" msgid="2763464949274455656">"Médiafájlok keresése az SD-kártyán..."</string>
-    <string name="sdcard_settings_read_only_status" product="nosdcard" msgid="3771783090621312312">"Írásvédettként csatolt USB-tár"</string>
-    <string name="sdcard_settings_read_only_status" product="default" msgid="5706115860484118911">"Az SD-kártya írásvédett módban van csatlakoztatva"</string>
+    <string name="sdcard_settings_scanning_status" msgid="7503429447676219564" product="nosdcard">"Média keresése az USB-táron"</string>
+    <string name="sdcard_settings_scanning_status" msgid="2763464949274455656" product="default">"Médiafájlok keresése az SD-kártyán..."</string>
+    <string name="sdcard_settings_read_only_status" msgid="3771783090621312312" product="nosdcard">"Írásvédettként csatolt USB-tár"</string>
+    <string name="sdcard_settings_read_only_status" msgid="5706115860484118911" product="default">"Az SD-kártya írásvédett módban van csatlakoztatva"</string>
     <string name="next_label" msgid="4693520878012668114">"Tovább"</string>
     <string name="language_picker_title" msgid="4034157617842965844">"Nyelvi beállítások"</string>
     <string name="select_your_language" msgid="1146235168951906084">"Válassza ki a nyelvet"</string>
@@ -213,8 +215,8 @@
     <string name="battery_info_label" msgid="4132685016148679403">"Akkumulátoradatok"</string>
     <string name="display_label" msgid="7403874003169865762">"Megjelenítés"</string>
     <string name="phone_info_label" msgid="2127552523124277664">"Telefon adatai"</string>
-    <string name="sd_card_settings_label" product="nosdcard" msgid="8101475181301178428">"USB-tár"</string>
-    <string name="sd_card_settings_label" product="default" msgid="5743100901106177102">"SD-kártya"</string>
+    <string name="sd_card_settings_label" msgid="8101475181301178428" product="nosdcard">"USB-tár"</string>
+    <string name="sd_card_settings_label" msgid="5743100901106177102" product="default">"SD-kártya"</string>
     <string name="proxy_settings_label" msgid="3271174136184391743">"Proxybeállítások"</string>
     <string name="cancel" msgid="6859253417269739139">"Mégse"</string>
     <string name="settings_label" msgid="1626402585530130914">"Beállítások"</string>
@@ -414,7 +416,7 @@
     <string name="wifi_tether_settings_subtext" msgid="8064755682383367008">"Wi-Fi hotspot beállítása és kezelése"</string>
     <string name="wifi_tether_settings_title" msgid="3749063216348284432">"Wi-Fi hotspot beállításai"</string>
     <string name="wifi_tether_configure_ap_text" msgid="3474995108398156258">"Wi-Fi hotspot konfigurálása"</string>
-    <string name="wifi_tether_configure_subtext" msgid="1927454307836232128">"<xliff:g id="NETWORK_SSID">%1$s</xliff:g> <xliff:g id="NETWORK_SECURITY">%2$s</xliff:g> hordozható Wi-Fi hotspot"</string>
+    <string name="wifi_tether_configure_subtext" msgid="1927454307836232128">"<xliff:g id="NETWORK_SSID">%1$s</xliff:g><xliff:g id="NETWORK_SECURITY">%2$s</xliff:g> hordozható Wi-Fi hotspot"</string>
     <string name="wifi_tether_configure_ssid_default" msgid="8467525402622138547">"AndroidHotspot"</string>
     <string name="testing_wifi_info">Wi-Fi információ</string>
     <string name="hidden_ssid_label">Rejtett SSID :</string>
@@ -533,8 +535,8 @@
     <string name="device_status_summary" msgid="2599162787451519618">"Telefonszám, jel stb."</string>
     <string name="storage_settings" msgid="4211799979832404953">"SD és telefon memória"</string>
     <string name="storage_settings_title" msgid="8746016738388094064">"SD és telefon memória beállításai"</string>
-    <string name="storage_settings_summary" product="nosdcard" msgid="3543813623294870759">"USB-tár leválasztása, és az elérhető tárhely megtekintése"</string>
-    <string name="storage_settings_summary" product="default" msgid="9176693537325988610">"SD-kártya leválasztása, a rendelkezésre álló tárhely megtekintése"</string>
+    <string name="storage_settings_summary" msgid="3543813623294870759" product="nosdcard">"USB-tár leválasztása, és az elérhető tárhely megtekintése"</string>
+    <string name="storage_settings_summary" msgid="9176693537325988610" product="default">"SD-kártya leválasztása, a rendelkezésre álló tárhely megtekintése"</string>
     <string name="status_number" msgid="5123197324870153205">"Saját telefonszámom"</string>
     <string name="status_min_number" msgid="3519504522179420597">"MIN"</string>
     <string name="status_msid_number" msgid="909010114445780530">"MSID"</string>
@@ -552,35 +554,35 @@
     <string name="status_up_time" msgid="7294859476816760399">"Futásidő"</string>
     <string name="status_awake_time" msgid="2393949909051183652">"Készenléti idő"</string>
     <string name="internal_memory" msgid="9129595691484260784">"Belső tárhely"</string>
-    <string name="sd_memory" product="nosdcard" msgid="2510246194083052841">"USB-tár"</string>
-    <string name="sd_memory" product="default" msgid="151871913888051515">"SD-kártya"</string>
+    <string name="sd_memory" msgid="2510246194083052841" product="nosdcard">"USB-tár"</string>
+    <string name="sd_memory" msgid="151871913888051515" product="default">"SD-kártya"</string>
     <string name="memory_available" msgid="418542433817289474">"Rendelkezésre álló hely"</string>
     <string name="memory_size" msgid="6629067715017232195">"Összes hely"</string>
-    <string name="sd_eject" product="default" msgid="6915293408836853020">"SD-kártya leválasztása"</string>
-    <string name="sd_eject_summary" product="nosdcard" msgid="5009296896648072891">"A belső USB-tár leválasztása"</string>
-    <string name="sd_eject_summary" product="default" msgid="3300599435073550246">"SD-kártya leválasztása, hogy biztonságosan el lehessen távolítani"</string>
-    <string name="sd_insert_summary" product="nosdcard" msgid="5264016886409577313">"Helyezze be az USB-tárat"</string>
-    <string name="sd_insert_summary" product="default" msgid="2048640010381803841">"Helyezzen be egy SD-kártyát a csatlakoztatáshoz"</string>
-    <string name="sd_mount" product="nosdcard" msgid="8966695015677343116">"Az USB-tár csatolása"</string>
-    <string name="sd_mount" product="default" msgid="5940523765187704135">"SD-kártya csatolása"</string>
-    <string name="sd_mount_summary" product="nosdcard" msgid="1794150364965145726">"Az USB-tár csatlakoztatása"</string>
-    <string name="sd_mount_summary" product="default" msgid="4936591681679097699">"SD-kártya csatolása"</string>
-    <string name="sd_format" product="nosdcard" msgid="2148179271623099054">"USB-tár törlése"</string>
-    <string name="sd_format" product="default" msgid="2576054280507119870">"SD-kártya törlése"</string>
-    <string name="sd_format_summary" product="nosdcard" msgid="1504606546865152514">"Minden adat, például a zenék és fotók törlése a telefon belső USB-táráról."</string>
-    <string name="sd_format_summary" product="default" msgid="915849621390821841">"Töröl minden adatot (például zenék, fotók) a telefon SD-kártyájáról"</string>
+    <string name="sd_eject" msgid="6915293408836853020" product="default">"SD-kártya leválasztása"</string>
+    <string name="sd_eject_summary" msgid="5009296896648072891" product="nosdcard">"A belső USB-tár leválasztása"</string>
+    <string name="sd_eject_summary" msgid="3300599435073550246" product="default">"SD-kártya leválasztása, hogy biztonságosan el lehessen távolítani"</string>
+    <string name="sd_insert_summary" msgid="5264016886409577313" product="nosdcard">"Helyezze be az USB-tárat"</string>
+    <string name="sd_insert_summary" msgid="2048640010381803841" product="default">"Helyezzen be egy SD-kártyát a csatlakoztatáshoz"</string>
+    <string name="sd_mount" msgid="8966695015677343116" product="nosdcard">"Az USB-tár csatolása"</string>
+    <string name="sd_mount" msgid="5940523765187704135" product="default">"SD-kártya csatolása"</string>
+    <string name="sd_mount_summary" msgid="1794150364965145726" product="nosdcard">"Az USB-tár csatlakoztatása"</string>
+    <string name="sd_mount_summary" msgid="4936591681679097699" product="default">"SD-kártya csatolása"</string>
+    <string name="sd_format" msgid="2148179271623099054" product="nosdcard">"USB-tár törlése"</string>
+    <string name="sd_format" msgid="2576054280507119870" product="default">"SD-kártya törlése"</string>
+    <string name="sd_format_summary" msgid="1504606546865152514" product="nosdcard">"Minden adat, például a zenék és fotók törlése a telefon belső USB-táráról."</string>
+    <string name="sd_format_summary" msgid="915849621390821841" product="default">"Töröl minden adatot (például zenék, fotók) a telefon SD-kártyájáról"</string>
     <string name="sd_unavailable" msgid="8580107589533213904">"Nem érhető el"</string>
     <string name="read_only" msgid="6702420168629076340">" (Írásvédett)"</string>
-    <string name="dlg_confirm_unmount_title" product="nosdcard" msgid="2349876662428231297">"USB-tár leválasztása"</string>
-    <string name="dlg_confirm_unmount_title" product="default" msgid="8612140627310646730">"SD-kártya leválasztása"</string>
-    <string name="dlg_confirm_unmount_text" product="nosdcard" msgid="3390169455621185223">"Ha leválasztja az USB-tárat, akkor néhány használt alkalmazás leáll, és lehet, hogy addig nem lesz elérhető, amíg újra nem csatolja az USB-tárat."</string>
-    <string name="dlg_confirm_unmount_text" product="default" msgid="5851214273718817727">"Ha leválasztja az SD-kártyát, egyes használatban lévő alkalmazások leállnak, és lehet, hogy addig nem lesznek elérhetők, amíg nem csatolja újra a kártyát."</string>
-    <string name="dlg_error_unmount_title" product="nosdcard" msgid="7695491947411836733">"USB-tár leválasztása sikertelen"</string>
-    <string name="dlg_error_unmount_title" product="default" msgid="4004106918266783081">"Nem sikerült leválasztani az SD-kártyát"</string>
-    <string name="dlg_error_unmount_text" product="nosdcard" msgid="1450864147013376592">"Nem lehet leválasztani az USB-tárat. Próbálkozzon újra később."</string>
-    <string name="dlg_error_unmount_text" product="default" msgid="9188972789897713180">"Nem lehet leválasztani az SD-kártyát. Próbálkozzon újra később."</string>
-    <string name="unmount_inform_text" product="nosdcard" msgid="7120241136790744265">"Az USB-tár leválasztásra kerül."</string>
-    <string name="unmount_inform_text" product="default" msgid="1904212716075458402">"Az SD-kártya leválasztásra kerül."</string>
+    <string name="dlg_confirm_unmount_title" msgid="2349876662428231297" product="nosdcard">"USB-tár leválasztása"</string>
+    <string name="dlg_confirm_unmount_title" msgid="8612140627310646730" product="default">"SD-kártya leválasztása"</string>
+    <string name="dlg_confirm_unmount_text" msgid="3390169455621185223" product="nosdcard">"Ha leválasztja az USB-tárat, akkor néhány használt alkalmazás leáll, és lehet, hogy addig nem lesz elérhető, amíg újra nem csatolja az USB-tárat."</string>
+    <string name="dlg_confirm_unmount_text" msgid="5851214273718817727" product="default">"Ha leválasztja az SD-kártyát, egyes használatban lévő alkalmazások leállnak, és lehet, hogy addig nem lesznek elérhetők, amíg nem csatolja újra a kártyát."</string>
+    <string name="dlg_error_unmount_title" msgid="7695491947411836733" product="nosdcard">"USB-tár leválasztása sikertelen"</string>
+    <string name="dlg_error_unmount_title" msgid="4004106918266783081" product="default">"Nem sikerült leválasztani az SD-kártyát"</string>
+    <string name="dlg_error_unmount_text" msgid="1450864147013376592" product="nosdcard">"Nem lehet leválasztani az USB-tárat. Próbálkozzon újra később."</string>
+    <string name="dlg_error_unmount_text" msgid="9188972789897713180" product="default">"Nem lehet leválasztani az SD-kártyát. Próbálkozzon újra később."</string>
+    <string name="unmount_inform_text" msgid="7120241136790744265" product="nosdcard">"Az USB-tár leválasztásra kerül."</string>
+    <string name="unmount_inform_text" msgid="1904212716075458402" product="default">"Az SD-kártya leválasztásra kerül."</string>
     <string name="sd_ejecting_title" msgid="8824572198034365468">"Leválasztás"</string>
     <string name="sd_ejecting_summary" msgid="2028753069184908491">"Leválasztás folyamatban"</string>
     <string name="battery_status_title" msgid="9159414319574976203">"Akkumulátor állapota"</string>
@@ -621,32 +623,32 @@
     <string name="restore_default_apn_completed" msgid="3990449939234957281">"Az alapértelmezett APN-beállítások visszaállítása befejeződött"</string>
     <string name="master_clear_title" msgid="5907939616087039756">"Gyári adatok visszaállítása"</string>
     <string name="master_clear_summary" msgid="4986154238001088492">"Minden adat törlése a telefonról"</string>
-    <string name="master_clear_desc" product="nosdcard" msgid="2163013814299528247">"Ez törli az összes adatot telefonja "<b>"belső tárhelyéről"</b>", ideértve:"\n\n<li>"az Ön Google Fiókját"</li>\n<li>"a rendszer- és alkalmazásadatokat és -beállításokat"</li>\n<li>"a letöltött alkalmazásokat"</li>\n\n"A telefon összes adatának törléséhez az "<b>"USB-tárat"</b>" is törölni kell."\n\n</string>
-    <string name="master_clear_desc" product="default" msgid="1741944496458365969">"Ez törli az összes adatot telefonja "<b>"belső tárhelyéről"</b>", ideértve:"\n\n<li>"az Ön Google Fiókját"</li>\n<li>"a rendszer- és alkalmazásadatokat és -beállításokat"</li>\n<li>"a letöltött alkalmazásokat"</li>\n\n"A zenék, képek és más felhasználói adatok törléséhez az "<b>"SD-kártyát"</b>" is törölni kell."\n\n</string>
-    <string name="erase_external_storage" product="nosdcard" msgid="969364037450286809">"USB-tár törlése"</string>
-    <string name="erase_external_storage" product="default" msgid="1397239046334307625">"SD-kártya törlése"</string>
-    <string name="erase_external_storage_description" product="nosdcard" msgid="1657838142707381027">"Minden adat, például zenék és képek törlése a belső USB-tárról."</string>
-    <string name="erase_external_storage_description" product="default" msgid="8100175974635894073">"Minden adat, például zenék és képek törlése a telefon SD-kártyájáról."</string>
+    <string name="master_clear_desc" msgid="2163013814299528247" product="nosdcard">"Ez törli az összes adatot telefonja "<b>"belső tárhelyéről"</b>", ideértve:"\n\n<li>"az Ön Google Fiókját"</li>\n<li>"a rendszer- és alkalmazásadatokat és -beállításokat"</li>\n<li>"a letöltött alkalmazásokat"</li>\n\n"A telefon összes adatának törléséhez az "<b>"USB-tárat"</b>" is törölni kell."\n\n</string>
+    <string name="master_clear_desc" msgid="1741944496458365969" product="default">"Ez törli az összes adatot telefonja "<b>"belső tárhelyéről"</b>", ideértve:"\n\n<li>"az Ön Google Fiókját"</li>\n<li>"a rendszer- és alkalmazásadatokat és -beállításokat"</li>\n<li>"a letöltött alkalmazásokat"</li>\n\n"A zenék, képek és más felhasználói adatok törléséhez az "<b>"SD-kártyát"</b>" is törölni kell."\n\n</string>
+    <string name="erase_external_storage" msgid="969364037450286809" product="nosdcard">"USB-tár törlése"</string>
+    <string name="erase_external_storage" msgid="1397239046334307625" product="default">"SD-kártya törlése"</string>
+    <string name="erase_external_storage_description" msgid="1657838142707381027" product="nosdcard">"Minden adat, például zenék és képek törlése a belső USB-tárról."</string>
+    <string name="erase_external_storage_description" msgid="8100175974635894073" product="default">"Minden adat, például zenék és képek törlése a telefon SD-kártyájáról."</string>
     <string name="master_clear_button_text" msgid="7550632653343157971">"Telefon visszaállítása"</string>
     <string name="master_clear_final_desc" msgid="6917971132484622696">"Töröl minden személyes adatot és letöltött alkalmazást? Ezt a műveletet nem lehet visszavonni!"</string>
     <string name="master_clear_final_button_text" msgid="5390908019019242910">"Minden törlése"</string>
     <string name="master_clear_gesture_prompt" msgid="1428645764883536750">"Rajzolja le a feloldási mintát"</string>
     <string name="master_clear_gesture_explanation" msgid="8901714274312707918">"Le kell rajzolnia a feloldási mintáját, hogy megerősítse a telefon visszaállítását."</string>
     <string name="master_clear_failed" msgid="8655202125010189406">"Nem történt visszaállítás, mert a Rendszertisztítás szolgáltatás nem érhető el."</string>
-    <string name="media_format_title" product="nosdcard" msgid="3999653431422767156">"USB-tár törlése"</string>
-    <string name="media_format_title" product="default" msgid="4427528440306787972">"SD-kártya törlése"</string>
-    <string name="media_format_summary" product="nosdcard" msgid="776603298628082065">"Törli az USB-tár adatait"</string>
-    <string name="media_format_summary" product="default" msgid="3805714639375830120">"Minden adatot töröl az SD-kártyáról"</string>
-    <string name="media_format_desc" product="nosdcard" msgid="4553860683952763905">"Ez a művelet törli az USB-tárat. El fogja veszíteni az "<b>"összes"</b>" ott tárolt adatot."</string>
-    <string name="media_format_desc" product="default" msgid="1598627584181935513">"A művelet törli az SD-kártyát. Elveszíti a kártyán lévő "<b>"összes"</b>" adatot!"</string>
-    <string name="media_format_button_text" product="nosdcard" msgid="6293669371185352810">"USB-tár törlése"</string>
-    <string name="media_format_button_text" product="default" msgid="6721544380069373626">"SD-kártya törlése"</string>
-    <string name="media_format_final_desc" product="nosdcard" msgid="8094635533378487255">"Törli az USB-tárat, törölve az összes ott tárolt fájlt is? A művelet nem vonható vissza!"</string>
-    <string name="media_format_final_desc" product="default" msgid="9015504991522581434">"Törli az SD-kártyát, törölve az összes ott tárolt fájlt is? A művelet nem vonható vissza!"</string>
+    <string name="media_format_title" msgid="3999653431422767156" product="nosdcard">"USB-tár törlése"</string>
+    <string name="media_format_title" msgid="4427528440306787972" product="default">"SD-kártya törlése"</string>
+    <string name="media_format_summary" msgid="776603298628082065" product="nosdcard">"Törli az USB-tár adatait"</string>
+    <string name="media_format_summary" msgid="3805714639375830120" product="default">"Minden adatot töröl az SD-kártyáról"</string>
+    <string name="media_format_desc" msgid="4553860683952763905" product="nosdcard">"Ez a művelet törli az USB-tárat. El fogja veszíteni az "<b>"összes"</b>" ott tárolt adatot."</string>
+    <string name="media_format_desc" msgid="1598627584181935513" product="default">"A művelet törli az SD-kártyát. Elveszíti a kártyán lévő "<b>"összes"</b>" adatot!"</string>
+    <string name="media_format_button_text" msgid="6293669371185352810" product="nosdcard">"USB-tár törlése"</string>
+    <string name="media_format_button_text" msgid="6721544380069373626" product="default">"SD-kártya törlése"</string>
+    <string name="media_format_final_desc" msgid="8094635533378487255" product="nosdcard">"Törli az USB-tárat, törölve az összes ott tárolt fájlt is? A művelet nem vonható vissza!"</string>
+    <string name="media_format_final_desc" msgid="9015504991522581434" product="default">"Törli az SD-kártyát, törölve az összes ott tárolt fájlt is? A művelet nem vonható vissza!"</string>
     <string name="media_format_final_button_text" msgid="4881713344315923175">"Minden törlése"</string>
     <string name="media_format_gesture_prompt" msgid="3109349468816856670">"Rajzolja le a feloldási mintát"</string>
-    <string name="media_format_gesture_explanation" product="nosdcard" msgid="1379736318750958338">"Le kell rajzolnia a feloldó mintát annak megerősítéséhez, hogy törölni kívánja az USB-tárat."</string>
-    <string name="media_format_gesture_explanation" product="default" msgid="1681213416497647321">"Le kell rajzolnia a feloldó mintát annak megerősítéséhez, hogy törölni kívánja az SD-kártyát."</string>
+    <string name="media_format_gesture_explanation" msgid="1379736318750958338" product="nosdcard">"Le kell rajzolnia a feloldó mintát annak megerősítéséhez, hogy törölni kívánja az USB-tárat."</string>
+    <string name="media_format_gesture_explanation" msgid="1681213416497647321" product="default">"Le kell rajzolnia a feloldó mintát annak megerősítéséhez, hogy törölni kívánja az SD-kártyát."</string>
     <string name="call_settings_title" msgid="5188713413939232801">"Hívásbeállítások"</string>
     <string name="call_settings_summary" msgid="7291195704801002886">"Hangposta, hívásátirányítás, hívásvárakoztatás és hívóazonosító beállítása"</string>
     <string name="tether_settings_title_usb" msgid="4315031513434087777">"Megosztás"</string>
@@ -775,13 +777,13 @@
     <string name="filter_apps_all" msgid="5142129378749391876">"Összes"</string>
     <string name="filter_apps_third_party" msgid="7786348047690140979">"Letöltött"</string>
     <string name="filter_apps_running" msgid="7767071454371350486">"Futó"</string>
-    <string name="filter_apps_onsdcard" product="nosdcard" msgid="4843063154701023349">"USB-tár"</string>
-    <string name="filter_apps_onsdcard" product="default" msgid="1477351142334784771">"Az SD-kártyán"</string>
+    <string name="filter_apps_onsdcard" msgid="4843063154701023349" product="nosdcard">"USB-tár"</string>
+    <string name="filter_apps_onsdcard" msgid="1477351142334784771" product="default">"Az SD-kártyán"</string>
     <string name="disabled" msgid="9206776641295849915">"Letiltva"</string>
     <string name="no_applications" msgid="5190227407135243904">"Nincs alkalmazás."</string>
     <string name="internal_storage" msgid="1584700623164275282">"Belső tárhely"</string>
-    <string name="sd_card_storage" product="nosdcard" msgid="2673203150465132465">"USB-tár"</string>
-    <string name="sd_card_storage" product="default" msgid="7623513618171928235">"SD-kártya"</string>
+    <string name="sd_card_storage" msgid="2673203150465132465" product="nosdcard">"USB-tár"</string>
+    <string name="sd_card_storage" msgid="7623513618171928235" product="default">"SD-kártya"</string>
     <string name="recompute_size" msgid="7722567982831691718">"Méret újraszámítása..."</string>
     <string name="clear_data_dlg_title" msgid="4470209520936375508">"Törlés"</string>
     <string name="clear_data_dlg_text" msgid="8368035073300828451">"Ennek az alkalmazásnak minden adata véglegesen törlésre kerül. Ebbe beletartozik az összes fájl, beállítás, fiók, adatbázis stb."</string>
@@ -801,8 +803,8 @@
     <string name="version_text" msgid="9189073826278676425">"Verzió: <xliff:g id="VERSION_NUM">%1$s</xliff:g>"</string>
     <string name="move_app" msgid="5042838441401731346">"Áthelyezés"</string>
     <string name="move_app_to_internal" msgid="3895430471913858185">"Áthelyezés a telefonra"</string>
-    <string name="move_app_to_sdcard" product="nosdcard" msgid="4350451696315265420">"Áthelyezés USB-tárra"</string>
-    <string name="move_app_to_sdcard" product="default" msgid="1143379049903056407">"Áthelyezés az SD-kártyára"</string>
+    <string name="move_app_to_sdcard" msgid="4350451696315265420" product="nosdcard">"Áthelyezés USB-tárra"</string>
+    <string name="move_app_to_sdcard" msgid="1143379049903056407" product="default">"Áthelyezés az SD-kártyára"</string>
     <string name="moving" msgid="6431016143218876491">"Áthelyezés"</string>
     <string name="insufficient_storage" msgid="8566913062094452962">"Nincs elég tárhely."</string>
     <string name="does_not_exist" msgid="837163572898468245">"Az alkalmazás nem létezik."</string>
@@ -825,11 +827,13 @@
     <string name="service_started_by_app" msgid="6575184738671598131">"Alkalmazás által elindítva."</string>
     <!-- no translation found for service_client_name (4037193625611815517) -->
     <skip />
+
     <string name="service_background_processes" msgid="6844156253576174488">"<xliff:g id="MEMORY">%1$s</xliff:g> szabad"</string>
     <string name="service_foreground_processes" msgid="7583975676795574276">"<xliff:g id="MEMORY">%1$s</xliff:g> fogl."</string>
     <string name="memory" msgid="6609961111091483458">"RAM"</string>
     <!-- no translation found for service_process_name (4098932168654826656) -->
     <skip />
+
     <string name="running_processes_item_description_s_s" msgid="5790575965282023145">"<xliff:g id="NUMPROCESS">%1$d</xliff:g> folyamat és <xliff:g id="NUMSERVICES">%2$d</xliff:g> szolgáltatás"</string>
     <string name="running_processes_item_description_s_p" msgid="8019860457123222953">"<xliff:g id="NUMPROCESS">%1$d</xliff:g> folyamat és <xliff:g id="NUMSERVICES">%2$d</xliff:g> szolgáltatás"</string>
     <string name="running_processes_item_description_p_s" msgid="744424668287252915">"<xliff:g id="NUMPROCESS">%1$d</xliff:g> folyamat és <xliff:g id="NUMSERVICES">%2$d</xliff:g>szolgáltatás"</string>
@@ -943,6 +947,7 @@
     <string name="battery_stats_phone_signal_label" msgid="6822042940376636775">"Telefon jele"</string>
     <!-- no translation found for battery_stats_last_duration (1535831453827905957) -->
     <skip />
+
     <string name="awake" msgid="387122265874485088">"Eszköz készenléti ideje"</string>
     <string name="wifi_on_time" msgid="6310209835617490616">"Wi-Fi időben"</string>
     <string name="bluetooth_on_time" msgid="6157799524996162271">"Wi-Fi időben"</string>
@@ -1126,10 +1131,10 @@
     <string name="credentials_access_summary" msgid="319662078718574168">"Az alkalmazások hozzáférhetnek a biztonsági tanúsítványokhoz és más hitelesítési adatokhoz"</string>
     <string name="credentials_unlock" msgid="1463040326264133844">"Jelszó megadása"</string>
     <string name="credentials_unlock_hint" msgid="594679530407918031">"Adja meg a hitelesítési adatok tárolójának jelszavát."</string>
-    <string name="credentials_install_certificates" product="nosdcard" msgid="619171634797689906">"Telepítés USB-tárról"</string>
-    <string name="credentials_install_certificates" product="default" msgid="177337517568022236">"Telepítés az SD-kártyáról"</string>
-    <string name="credentials_install_certificates_summary" product="nosdcard" msgid="8920330112631198575">"Titkosított tanúsítványok telepítése USB-tárról"</string>
-    <string name="credentials_install_certificates_summary" product="default" msgid="7737001268684193093">"Titkosított tanúsítványok telepítése az SD-kártyáról"</string>
+    <string name="credentials_install_certificates" msgid="619171634797689906" product="nosdcard">"Telepítés USB-tárról"</string>
+    <string name="credentials_install_certificates" msgid="177337517568022236" product="default">"Telepítés az SD-kártyáról"</string>
+    <string name="credentials_install_certificates_summary" msgid="8920330112631198575" product="nosdcard">"Titkosított tanúsítványok telepítése USB-tárról"</string>
+    <string name="credentials_install_certificates_summary" msgid="7737001268684193093" product="default">"Titkosított tanúsítványok telepítése az SD-kártyáról"</string>
     <string name="credentials_set_password" msgid="9104473585811899989">"Jelszó beállítása"</string>
     <string name="credentials_set_password_summary" msgid="8287876917562085701">"A hitelesítési adatok tárolója jelszavának beállítása és módosítása"</string>
     <string name="credentials_reset" msgid="9170150870552453457">"Tároló ürítése"</string>
@@ -1227,7 +1232,6 @@
     <string name="sound_category_calls_title" msgid="3688531959256239012">"Beérkező hívások"</string>
     <string name="sound_category_notification_title" msgid="3502115998790286943">"Értesítések"</string>
     <string name="sound_category_feedback_title" msgid="4399742321363475393">"Visszajelzés"</string>
-
     <string name="battery_history_label">Akkumulátor-előzmények</string>
     <string name="device_hostname">Készülék hosztneve</string>
     <string name="bluetooth_profile_hid">HID</string>
@@ -1384,4 +1388,116 @@
     <string name="wimax_settings_summary" msgid="3207355006084135453">"4G hálózat és modem beállítása és kezelése"</string>
     <string name="status_wimax_mac_address" msgid="8390791848661413416">"4G MAC-cím"</string>
     <string name="additional_system_update_settings_list_item_title" msgid="214987609894661992">"További rendszerfrissítések"</string>
+    <string name="finger_enrollment">Finger Enrollment</string>
+    <string name="start_finger_enrollment_summary">Registers fingers for use with lock screen and other applications</string>
+    <string name="lockfinger_unlock_set_unlock_launch_picker_summary">Lock screen with a pattern, finger, PIN, or password</string>
+    <string name="lockfinger_unlock_set_unlock_launch_picker_change_summary">Change or disable pattern, finger, PIN, or password security</string>
+    <string name="lockfinger_unlock_set_unlock_finger_title">Ujj</string>
+    <string name="lockfinger_unlock_set_unlock_finger_summary">Csusztassa ujját a képernyö feloldásához</string>
+    <string name="lockfinger_finger_settings_title">Képernyőzár feloldása</string>
+    <string name="lockfinger_set_finger_unlock_title">Ujjlenyomat beállítása a feloldáshoz</string>
+    <string name="lockfinger_change_finger_unlock_title">Ujjlenyomat módosítása a feloldáshoz</string>
+    <string name="lockfinger_toggle_unlock_finger_title">Ujjlenyomat megkövetelése</string>
+    <string name="lockfinger_toggle_unlock_finger_summary">Must use fingerprint to unlock screen</string>
+    <string name="lockfinger_dbadmin_title">True Suite Administration</string>
+    <string name="lockfinger_unlock_disable_lock_finger_summary">Remove unlock finger</string>
+    <string name="unlock_change_lock_finger_title">Change unlock finger</string>
+    <string name="lockpassword_finger_set_toast">Finger has been set</string>
+    <string name="lockpattern_change_lock_finger_label">Change unlock finger</string>
+    <string name="lockfinger_semaphore_failure_toast">Semaphore failure</string>
+    <string name="lockfinger_enrollment_succeeded_toast">Enrollment Succeeded.</string>
+    <string name="lockfinger_tsm_library_not_available_toast">TSM Library failed to load... cannot proceed!</string>
+    <string name="lockfinger_enrollment_canceled_toast">Enrollment Canceled.</string>
+    <string name="lockfinger_enrollment_timeout_toast">Enrollment Timed Out.</string>
+    <string name="lockfinger_enrollment_unknown_error_toast">"Unknown error.
+Failure to connect is likely."</string>
+    <string name="lockfinger_enrollment_failure_default_toast">Enroll Not Successful. failure = %d.</string>
+    <string name="lockfinger_enrollment_database_full">Enroll Not Successful. Database is full.</string>
+    <string name="lockfinger_dbadmin_failure_default_toast">Database Administration operation failure: %d.</string>
+    <string name="lockfinger_ui_timeout_header">UI timeout!</string>
+    <string name="lockfinger_too_many_bad_swipes_header">Too many bad swipes!</string>
+    <string name="lockfinger_lockout_countdown_footer">Try again in %d seconds.</string>
+    <string name="ext_partition_info">Partition Info</string>
+    <string name="extendedinfo_settings">Kiterjesztett Partition Info</string>
+    <string name="extended_info_title">Extended Partition Info</string>
+    <string name="title_system_part_info">/system partition info</string>
+    <string name="title_data_part_info">/data partition info</string>
+    <string name="title_cache_part_info">/cache partition info</string>
+    <string name="title_sdcard_fat_part_info">/sdcard partition info (fat)</string>
+    <string name="title_sdcard_ext_part_info">/sdcard partition info (ext)</string>
+    <string name="settings_ics_system">RENDSZER</string>
+    <string name="settings_ics_radio">BLUETOOTH</string>
+    <string name="settings_radio_more">Vezeték nélküli beállítások</string>
+    <string name="settings_ics_device">KÉSZÜLÉK</string>
+    <string name="settings_ics_personal">PERSONAL</string>
+    <string name="settings_ics_system_cap">RENDSZER</string>
+    <string name="settings_ics_interface">FELÜLET</string>
+    <string name="used_out_of">Használható</string>
+    <string name="default_unavailable">Nem érhető el</string>
+    <string name="default_unimplemented">Még nincs teljesen végrehajtva.</string>
+    <string name="sdext_memory">SD-Ext</string>
+    <string name="toast_magpie_disabled">HIBA: sd-ext automatikusan le van tíltva</string>
+    <string name="mount_sd_ext">Mount SD-ext on boot</string>
+    <string name="mount_sd_ext_summary">Engedélyezve mount SD-ext on boot (need reboot)</string>
+    <string name="data_bind_mount">Engedélyezve Data2sd</string>
+    <string name="data_bind_mount_summary">Enable Data2sd on SD-ext (need reboot)</string>
+    <string name="down_cache_mount">Engedélyezve Download on SD-ext</string>
+    <string name="down_cache_mount_summary">Engedélyezve download cache on SD-ext (need reboot)</string>
+    <string name="increasing_ring_title">Erősődő csengetési hangerő</string>
+    <string name="checkbox_increasing_ring">Volumennövekedés engedélyezése</string>
+    <string name="increasing_ring_min_volume_title">Csengetés indítási hangereje</string>
+    <string name="increasing_ring_ring_volume_title">Jelenlegi csengetési hangerő</string>
+    <string name="increasing_ring_volume_notice">"Notice:
+As the start volume is set higher than the ringer volume, the ring tone will be played using the ringer volume."</string>
+    <string name="increasing_ring_interval_title">Időköz növekedése</string>
+    <string name="increasing_ring_interval_eachring">Minden csengetés</string>
+    <string name="increasing_ring_interval_half_second">0.5 seconds</string>
+    <string name="increasing_ring_interval_1second">1 second</string>
+    <string name="increasing_ring_interval_2seconds">2 seconds</string>
+    <string name="increasing_ring_interval_3seconds">3 seconds</string>
+    <string name="increasing_ring_interval_4seconds">4 seconds</string>
+    <string name="increasing_ring_interval_5seconds">5 seconds</string>
+    <string name="increasing_ring_interval_6seconds">6 seconds</string>
+    <string name="increasing_ring_interval_7seconds">7 seconds</string>
+    <string name="increasing_ring_interval_8seconds">8 seconds</string>
+    <string name="increasing_ring_interval_9seconds">9 seconds</string>
+    <string name="increasing_ring_interval_10seconds">10 seconds</string>
+    <string name="pref_pattern_style_title">Stílusok</string>
+    <string name="pref_pattern_style_summary">Csengetési stílus kiválasztása</string>
+    <string name="ringlock_style_entry_dots">Default style</string>
+    <string name="ringlock_style_entry_revamped">Revamped style</string>
+    <string name="ringlock_style_entry_holo">Holo style</string>
+    <string name="ringlock_style_entry_blade">Blade style</string>
+    <string name="less_notification_sounds_title">Kevésbé gyakori Értesítési hangok</string>
+    <string name="less_notification_sounds_summary">"Limit each app's notification sounds to play once per the set value"</string>
+    <string name="verifier_device_identifier">Fejlesztési eszköz azonosítója</string>
+    <string name="verifier_device_identifier_not_available">Készülék információk nem állnak rendelkezésre</string>
+    <string name="pref_killtimeout_title">Kill időtullépés</string>
+    <string name="pref_killtimeout_summary">Maximális idő hogy nyomja meg a vissza gombot  Kill app (requires reboot)</string>
+    <string name="device_screen_resolution">Képernyőfelbontás</string>
+    <string name="gpu_info">GPU</string>
+    <string name="lock_pattern_size_3">3x3</string>
+    <string name="lock_pattern_size_4">4x4</string>
+    <string name="lock_pattern_size_5">5x5</string>
+    <string name="lock_pattern_size_6">6x6</string>
+    <string name="volume_key_cursor_control_title">key cursor hangerőszabályzó</string>
+    <string name="volume_key_cursor_control_off">Kikapcsolva</string>
+    <string name="volume_key_cursor_control_on">Hangerő fel/le kurzolt balra/jobra</string>
+    <string name="volume_key_cursor_control_on_reverse">Hangerő fel/le kurzolt balra/jobra</string>
+    <string name="nones" />
+    <string name="device_cpu">CPU:</string>
+    <string name="max_cpus">FREQ:</string>
+    <string name="device_memory">RAM:</string>
+    <string name="kernel_versions">KERNEL:</string>
+    <string name="firmware_versions">VERSION:</string>
+    <string name="model_numbers">MODEL:</string>
+    <string name="about_misc_settings">CyanMobile</string>
+    <string name="app_security_title">APP BIZTONSÁG</string>
+    <string name="sms_security_check_limit_title">SMS Üzenet limit</string>
+    <string name="sms_security_check_limit_summary">Értesítést kap ha az alkalmazás túl sok üzenetett küld (%d messages in 1 hour)</string>
+    <string name="lock_after_timeout">Képernyőzár Időtullépése</string>
+    <string name="lock_after_timeout_summary">Képernyőzár %1$s után a kijelző automatikusan kikapcsol</string>
+    <string name="volume_overlay_title">Hangerő panel stílusa</string>
+    <string name="title_activity_datamain">Alkalmazások adatai</string>
+
 </resources>
