@@ -64,7 +64,7 @@ public class AdvancedSettings extends PreferenceActivity
 
     private static final String WIFI_SLEEP_POLICY_DEFAULT_PROP = "ro.wifi.sleep_policy_default";
     private int mWifiSleepPolicyDefault = SystemProperties.getInt(WIFI_SLEEP_POLICY_DEFAULT_PROP,
-            Settings.System.WIFI_SLEEP_POLICY_DEFAULT);
+            Settings.System.WIFI_SLEEP_POLICY_NEVER);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
