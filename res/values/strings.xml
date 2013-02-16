@@ -3045,7 +3045,7 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <string name="sound_category_notification_title">Notifications</string>
     <string name="sound_category_feedback_title">Feedback</string>
 
-    <string name="launcher_settings_title">ADWLauncher</string>
+    <string name="launcher_settings_title">Launcher settings</string>
 
     <string name="themechooser_settings_title">ThemeChooser</string>
 

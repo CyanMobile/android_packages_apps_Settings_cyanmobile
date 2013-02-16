@@ -36,8 +36,10 @@ public class Settings extends PreferenceActivity {
     private static final String KEY_DEVICE_SETTINGS = "device_settings";
     private static final String KEY_SYSTEM_UPDATE_SETTINGS = "additional_system_update_settings";
     private static final String KEY_LAUNCHER = "launcher_settings";
+    private static final String KEY_LEGACYLAUNCHER = "legacylauncher_settings";
 
     private Preference mLauncherSettings;
+    private Preference mLegacyLauncherSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +52,10 @@ public class Settings extends PreferenceActivity {
         PreferenceGroup parent = (PreferenceGroup) findPreference(KEY_PARENT);
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parent, KEY_SYNC_SETTINGS, 0);
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parent, KEY_LAUNCHER, 0);
+        Utils.updatePreferenceToSpecificActivityOrRemove(this, parent, KEY_LEGACYLAUNCHER, 0);
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parent, KEY_DEVICE_SETTINGS, 0);
         mLauncherSettings = parent.findPreference(KEY_LAUNCHER);
+        mLegacyLauncherSettings = parent.findPreference(KEY_LEGACYLAUNCHER);
 
         Preference dockSettings = parent.findPreference(KEY_DOCK_SETTINGS);
         if (getResources().getBoolean(R.bool.has_dock_settings) == false && dockSettings != null) {
@@ -82,9 +86,15 @@ public class Settings extends PreferenceActivity {
             if ( parent.findPreference(KEY_LAUNCHER) == null){
                 parent.addPreference(mLauncherSettings);
             }
+        } else if (a != null && a.name.equals("com.wordpress.chislonchow.legacylauncher") && (a.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0 ){
+            if ( parent.findPreference(KEY_LEGACYLAUNCHER) == null){
+                parent.addPreference(mLegacyLauncherSettings);
+            }
         } else {
             if ( parent.findPreference(KEY_LAUNCHER) != null){
                 parent.removePreference(mLauncherSettings);
+            } else if ( parent.findPreference(KEY_LEGACYLAUNCHER) != null){
+                parent.removePreference(mLegacyLauncherSettings);
             }
         }
     }
