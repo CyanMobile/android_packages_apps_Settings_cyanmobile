@@ -81,19 +81,22 @@ public class Settings extends PreferenceActivity {
 
         PreferenceGroup parent = (PreferenceGroup) findPreference(KEY_PARENT);
 
-        ActivityInfo a = getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY).activityInfo;
-         if (a != null && a.name.equals("com.android.launcher.Launcher") && (a.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0 ){
-            if ( parent.findPreference(KEY_LAUNCHER) == null){
+        ActivityInfo a = getPackageManager().resolveActivity(
+                intent, PackageManager.MATCH_DEFAULT_ONLY).activityInfo;
+        if (a != null && a.name.equals("com.android.launcher.Launcher")
+                && (a.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+            if (parent.findPreference(KEY_LAUNCHER) == null) {
                 parent.addPreference(mLauncherSettings);
             }
-        } else if (a != null && a.name.equals("com.wordpress.chislonchow.legacylauncher") && (a.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0 ){
-            if ( parent.findPreference(KEY_LEGACYLAUNCHER) == null){
+        } else if (a != null && a.name.equals("com.wordpress.chislonchow.legacylauncher.Launcher")
+                && (a.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+            if (parent.findPreference(KEY_LEGACYLAUNCHER) == null) {
                 parent.addPreference(mLegacyLauncherSettings);
             }
         } else {
-            if ( parent.findPreference(KEY_LAUNCHER) != null){
+            if (parent.findPreference(KEY_LAUNCHER) != null) {
                 parent.removePreference(mLauncherSettings);
-            } else if ( parent.findPreference(KEY_LEGACYLAUNCHER) != null){
+            } else if (parent.findPreference(KEY_LEGACYLAUNCHER) != null) {
                 parent.removePreference(mLegacyLauncherSettings);
             }
         }
