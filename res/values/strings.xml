@@ -3338,4 +3338,9 @@ when you are connected on trusted networks.\n\nDo you really want to enable this
     <string name="lock_after_timeout_summary">Lock screen <xliff:g id="timeout_string">%1$s</xliff:g> after screen automatically turns off</string>
     <string name="volume_overlay_title">Volume panel style</string>
     <string name="title_activity_datamain">Apps Data usage</string>
+    <!-- [CHAR LIMIT=30] Manage applications, title for dialog when disabling apps -->
+    <string name="app_disable_dlg_title">Disable built-in app</string>
+    <!-- [CHAR LIMIT=200] Manage applications, text for dialog when disabling apps -->
+    <string name="app_disable_dlg_text">Disabling a built-in application may cause other applications
+        to misbehave.  Are you sure?</string>
 </resources>

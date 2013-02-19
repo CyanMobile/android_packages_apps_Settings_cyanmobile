@@ -568,10 +568,6 @@ public class ManageApplications extends TabActivity implements
                 .setIndicator(getString(R.string.filter_apps_third_party),
                         getResources().getDrawable(R.drawable.ic_tab_download))
                 .setContent(this));
-        tabHost.addTab(tabHost.newTabSpec(TAB_ALL)
-                .setIndicator(getString(R.string.filter_apps_all),
-                        getResources().getDrawable(R.drawable.ic_tab_all))
-                .setContent(this));
         tabHost.addTab(tabHost.newTabSpec(TAB_SDCARD)
                 .setIndicator(getString(R.string.filter_apps_onsdcard),
                         getResources().getDrawable(R.drawable.ic_tab_sdcard))
@@ -579,6 +575,10 @@ public class ManageApplications extends TabActivity implements
         tabHost.addTab(tabHost.newTabSpec(TAB_RUNNING)
                 .setIndicator(getString(R.string.filter_apps_running),
                         getResources().getDrawable(R.drawable.ic_tab_running))
+                .setContent(this));
+        tabHost.addTab(tabHost.newTabSpec(TAB_ALL)
+                .setIndicator(getString(R.string.filter_apps_all),
+                        getResources().getDrawable(R.drawable.ic_tab_all))
                 .setContent(this));
         tabHost.setCurrentTabByTag(defaultTabTag);
         tabHost.setOnTabChangedListener(this);

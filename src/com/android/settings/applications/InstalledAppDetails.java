@@ -75,7 +75,7 @@ import android.widget.TextView;
 public class InstalledAppDetails extends Activity
         implements View.OnClickListener, ApplicationsState.Callbacks {
     private static final String TAG="InstalledAppDetails";
-    static final boolean SUPPORT_DISABLE_APPS = false;
+    static final boolean SUPPORT_DISABLE_APPS = true;
     private static final boolean localLOGV = false;
     
     private PackageManager mPm;
@@ -135,7 +135,8 @@ public class InstalledAppDetails extends Activity
     private static final int DLG_CANNOT_CLEAR_DATA = DLG_BASE + 4;
     private static final int DLG_FORCE_STOP = DLG_BASE + 5;
     private static final int DLG_MOVE_FAILED = DLG_BASE + 6;
-    
+    private static final int DLG_DISABLE = DLG_BASE + 7;
+
     private boolean MoveToSdExt = false;
 
     private Handler mHandler = new Handler() {
@@ -300,7 +301,7 @@ public class InstalledAppDetails extends Activity
                         intent.setPackage(mAppEntry.info.packageName);
                         List<ResolveInfo> homes = mPm.queryIntentActivities(intent, 0);
                         if ((homes != null && homes.size() > 0) ||
-                                (mPackageInfo != null &&
+                                (mPackageInfo != null && mPackageInfo.signatures != null &&
                                         sys.signatures[0].equals(mPackageInfo.signatures[0]))) {
                             // Disable button for core system applications.
                             mUninstallButton.setText(R.string.disable_text);
@@ -726,6 +727,21 @@ public class InstalledAppDetails extends Activity
             .setMessage(msg)
             .setNeutralButton(R.string.dlg_ok, null)
             .create();
+        case DLG_DISABLE:
+            return new AlertDialog.Builder(this)
+            .setTitle(getString(R.string.app_disable_dlg_title))
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setMessage(getString(R.string.app_disable_dlg_text))
+            .setPositiveButton(R.string.dlg_ok,
+                new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    new DisableChanger(InstalledAppDetails.this, mAppEntry.info, mAppEntry.info.enabled ?
+                         PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER
+                         : PackageManager.COMPONENT_ENABLED_STATE_DEFAULT).execute((Object)null);
+                }
+            })
+            .setNegativeButton(R.string.dlg_cancel, null)
+            .create();
         }
         return null;
     }
@@ -742,6 +758,11 @@ public class InstalledAppDetails extends Activity
         ActivityManager am = (ActivityManager)getSystemService(
                 Context.ACTIVITY_SERVICE);
         am.forceStopPackage(pkgName);
+        mState.invalidatePackage(pkgName);
+        ApplicationsState.AppEntry newEnt = mState.getEntry(pkgName);
+        if (newEnt != null) {
+            mAppEntry = newEnt;	
+        }
         checkForceStop();
     }
 
@@ -793,9 +814,13 @@ public class InstalledAppDetails extends Activity
                 showDialogInner(DLG_FACTORY_RESET);
             } else {
                 if ((mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
-                    new DisableChanger(this, mAppEntry.info, mAppEntry.info.enabled ?
-                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED
-                            : PackageManager.COMPONENT_ENABLED_STATE_DEFAULT).execute((Object)null);
+                    if (mAppEntry.info.enabled) {
+                        showDialogInner(DLG_DISABLE);
+                    } else {
+                        new DisableChanger(this, mAppEntry.info,
+                                PackageManager.COMPONENT_ENABLED_STATE_DEFAULT)
+                        .execute((Object)null);
+                    }
                 } else {
                     uninstallPkg(packageName);
                 }

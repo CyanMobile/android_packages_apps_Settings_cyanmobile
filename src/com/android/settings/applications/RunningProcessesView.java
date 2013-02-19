@@ -18,6 +18,7 @@ package com.android.settings.applications;
 
 import com.android.settings.R;
 
+import com.android.internal.util.MemInfoReader;
 import android.app.ActivityManager;
 import android.app.Dialog;
 import android.content.Context;
@@ -50,9 +51,6 @@ public class RunningProcessesView extends FrameLayout
         implements AdapterView.OnItemClickListener, RecyclerListener,
         RunningState.OnRefreshUiListener {
     
-    // Memory pages are 4K.
-    static final long PAGE_SIZE = 4*1024;
-    
     long SECONDARY_SERVER_MEM;
     
     final HashMap<View, ActiveItem> mActiveItems = new HashMap<View, ActiveItem>();
@@ -83,7 +81,7 @@ public class RunningProcessesView extends FrameLayout
     
     Dialog mCurDialog;
     
-    byte[] mBuffer = new byte[1024];
+    MemInfoReader mMemInfoReader = new MemInfoReader();
     
     public static class ActiveItem {
         View mRootView;
@@ -302,87 +300,6 @@ public class RunningProcessesView extends FrameLayout
         }
     }
     
-    private boolean matchText(byte[] buffer, int index, String text) {
-        int N = text.length();
-        if ((index+N) >= buffer.length) {
-            return false;
-        }
-        for (int i=0; i<N; i++) {
-            if (buffer[index+i] != text.charAt(i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    private long extractMemValue(byte[] buffer, int index) {
-        while (index < buffer.length && buffer[index] != '\n') {
-            if (buffer[index] >= '0' && buffer[index] <= '9') {
-                int start = index;
-                index++;
-                while (index < buffer.length && buffer[index] >= '0'
-                    && buffer[index] <= '9') {
-                    index++;
-                }
-                String str = new String(buffer, 0, start, index-start);
-                return ((long)Integer.parseInt(str)) * 1024;
-            }
-            index++;
-        }
-        return 0;
-    }
-    
-    private long readAvailMem() {
-        try {
-            long memFree = 0;
-            long memCached = 0;
-            FileInputStream is = new FileInputStream("/proc/meminfo");
-            int len = is.read(mBuffer);
-            is.close();
-            final int BUFLEN = mBuffer.length;
-            for (int i=0; i<len && (memFree == 0 || memCached == 0); i++) {
-                if (matchText(mBuffer, i, "MemFree")) {
-                    i += 7;
-                    memFree = extractMemValue(mBuffer, i);
-                } else if (matchText(mBuffer, i, "Cached")) {
-                    i += 6;
-                    memCached = extractMemValue(mBuffer, i);
-                }
-                while (i < BUFLEN && mBuffer[i] != '\n') {
-                    i++;
-                }
-            }
-            return memFree + memCached;
-        } catch (java.io.FileNotFoundException e) {
-        } catch (java.io.IOException e) {
-        }
-        return 0;
-    }
-
-    private long readTotalMem() {
-        try {
-            long memTotal = 0;
-            FileInputStream is = new FileInputStream("/proc/meminfo");
-            int len = is.read(mBuffer);
-            is.close();
-            final int BUFLEN = mBuffer.length;
-            for (int i=0; i<len && (memTotal == 0); i++) {
-                if (matchText(mBuffer, i, "MemTotal")) {
-                    i += 8;
-                    memTotal = extractMemValue(mBuffer, i);
-                }
-                while (i < BUFLEN && mBuffer[i] != '\n') {
-                    i++;
-                }
-            }
-            return memTotal;
-        } catch (java.io.FileNotFoundException e) {
-        } catch (java.io.IOException e) {
-        }
-        return 0;
-    }
-
-    
     void refreshUi(boolean dataChanged) {
         if (dataChanged) {
             ServiceListAdapter adapter = (ServiceListAdapter)(mListView.getAdapter());
@@ -397,7 +314,9 @@ public class RunningProcessesView extends FrameLayout
 
         // This is the amount of available memory until we start killing
         // background services.
-        long availMem = readAvailMem() - SECONDARY_SERVER_MEM;
+        mMemInfoReader.readMemInfo();
+        long availMem = mMemInfoReader.getFreeSize() + mMemInfoReader.getCachedSize()
+                - SECONDARY_SERVER_MEM;
         if (availMem < 0) {
             availMem = 0;
         }
@@ -414,7 +333,7 @@ public class RunningProcessesView extends FrameLayout
                 mBackgroundProcessText.setText(getResources().getString(
                         R.string.service_background_processes, sizeStr));
                 sizeStr = Formatter.formatShortFileSize(getContext(),
-                        readTotalMem() - freeMem);
+                        mMemInfoReader.getTotalSize() - freeMem);
                 mForegroundProcessText.setText(getResources().getString(
                         R.string.service_foreground_processes, sizeStr));
             }
@@ -434,9 +353,9 @@ public class RunningProcessesView extends FrameLayout
                 */
             }
 
-            float totalMem = readTotalMem();
+            float totalMem = mMemInfoReader.getTotalSize();
             float totalShownMem = availMem + mLastBackgroundProcessMemory
-                    + mLastForegroundProcessMemory + mLastServiceProcessMemory;
+                    + mLastServiceProcessMemory;
             mColorBar.setRatios((totalMem-totalShownMem)/totalMem,
                     mLastServiceProcessMemory/totalMem,
                     mLastBackgroundProcessMemory/totalMem);
@@ -494,9 +413,9 @@ public class RunningProcessesView extends FrameLayout
             }
         });
         
-        // Magic!  Implementation detail!  Don't count on this!
-        SECONDARY_SERVER_MEM =
-            Integer.valueOf(SystemProperties.get("ro.SECONDARY_SERVER_MEM"))*PAGE_SIZE;
+        ActivityManager.MemoryInfo memInfo = new ActivityManager.MemoryInfo();
+        mAm.getMemoryInfo(memInfo);
+        SECONDARY_SERVER_MEM = memInfo.secondaryServerThreshold;
     }
     
     public void doPause() {

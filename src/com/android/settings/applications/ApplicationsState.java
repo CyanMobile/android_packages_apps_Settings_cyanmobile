@@ -147,11 +147,15 @@ public class ApplicationsState {
         private final Collator sCollator = Collator.getInstance();
         @Override
         public int compare(AppEntry object1, AppEntry object2) {
+            if (object1.info.enabled != object2.info.enabled) {
+                return object1.info.enabled ? -1 : 1;
+            }
             return sCollator.compare(object1.label, object2.label);
         }
     };
 
-    public static final Comparator<AppEntry> SIZE_COMPARATOR = new Comparator<AppEntry>() {
+    public static final Comparator<AppEntry> SIZE_COMPARATOR
+            = new Comparator<AppEntry>() {
         private final Collator sCollator = Collator.getInstance();
         @Override
         public int compare(AppEntry object1, AppEntry object2) {
@@ -243,8 +247,7 @@ public class ApplicationsState {
              } else if (Intent.ACTION_PACKAGE_CHANGED.equals(actionStr)) {
                  Uri data = intent.getData();
                  String pkgName = data.getEncodedSchemeSpecificPart();
-                 removePackage(pkgName);
-                 addPackage(pkgName);
+                 invalidatePackage(pkgName);
              } else if (Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE.equals(actionStr) ||
                      Intent.ACTION_EXTERNAL_APPLICATIONS_UNAVAILABLE.equals(actionStr)) {
                  // When applications become available or unavailable (perhaps because
@@ -261,12 +264,16 @@ public class ApplicationsState {
                  boolean avail = Intent.ACTION_EXTERNAL_APPLICATIONS_AVAILABLE.equals(actionStr);
                  if (avail) {
                      for (String pkgName : pkgList) {
-                         removePackage(pkgName);
-                         addPackage(pkgName);
+                         invalidatePackage(pkgName);
                      }
                  }
              }
          }
+    }
+
+    void invalidatePackage(String pkgName) {
+        removePackage(pkgName);
+        addPackage(pkgName);
     }
 
     class MainHandler extends Handler {
@@ -380,6 +387,14 @@ public class ApplicationsState {
             }
             for (int i=0; i<mApplications.size(); i++) {
                 final ApplicationInfo info = mApplications.get(i);
+                // Need to trim out any applications that are disabled by
+                // something different than the user.
+                if (!info.enabled && info.enabledSetting
+                        != PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER) {
+                    mApplications.remove(i);
+                    i--;
+                    continue;
+                }
                 final AppEntry entry = mEntriesMap.get(info.packageName);
                 if (entry != null) {
                     entry.info = info;

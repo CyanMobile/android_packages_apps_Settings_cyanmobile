@@ -114,7 +114,7 @@ public class RunningState {
     ArrayList<BaseItem> mItems = new ArrayList<BaseItem>();
     ArrayList<MergedItem> mMergedItems = new ArrayList<MergedItem>();
     ArrayList<MergedItem> mBackgroundItems = new ArrayList<MergedItem>();
-    
+
     int mNumBackgroundProcesses;
     long mBackgroundProcessMemory;
     int mNumForegroundProcesses;
@@ -245,7 +245,9 @@ public class RunningState {
         ActivityManager.RunningAppProcessInfo mRunningProcessInfo;
         
         MergedItem mMergedItem;
-        
+
+        boolean mInteresting;
+
         // Purely for sorting.
         boolean mIsSystem;
         boolean mIsStarted;
@@ -605,7 +607,8 @@ public class RunningState {
             return true;
         }
         if ((pi.flags&ActivityManager.RunningAppProcessInfo.FLAG_PERSISTENT) == 0
-                && pi.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
+                && pi.importance >= ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND
+                && pi.importance < ActivityManager.RunningAppProcessInfo.IMPORTANCE_CANT_SAVE_STATE
                 && pi.importanceReasonCode
                         == ActivityManager.RunningAppProcessInfo.REASON_UNKNOWN) {
             return true;
@@ -698,7 +701,10 @@ public class RunningState {
                     mInterestingProcesses.add(proc);
                 }
                 proc.mCurSeq = mSequence;
+                proc.mInteresting = true;
                 proc.ensureLabel(pm);
+            } else {
+                proc.mInteresting = false;
             }
             
             proc.mRunningSeq = mSequence;
@@ -736,7 +742,7 @@ public class RunningState {
         int NHP = mInterestingProcesses.size();
         for (int i=0; i<NHP; i++) {
             ProcessItem proc = mInterestingProcesses.get(i);
-            if (mRunningProcesses.get(proc.mPid) == null) {
+            if (!proc.mInteresting || mRunningProcesses.get(proc.mPid) == null) {
                 changed = true;
                 mInterestingProcesses.remove(i);
                 i--;
