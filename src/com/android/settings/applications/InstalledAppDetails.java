@@ -140,6 +140,8 @@ public class InstalledAppDetails extends Activity
 
     private boolean MoveToSdExt = false;
 
+    private boolean mEnableSdExt;
+
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
             // If the activity is gone, don't process any more messages.
@@ -256,14 +258,15 @@ public class InstalledAppDetails extends Activity
     }
 
     private void initMoveButtonR() {
+        if (!mEnableSdExt) return;
+
         boolean dataOnly = false;
         dataOnly = (mPackageInfo == null) && (mAppEntry != null);
         boolean moveDisable = true;
         if (dataOnly) {
             mMoveAppButtonL.setText(R.string.move_app);
-        } else if (SystemProperties.get("magpie.a2sd.active","0").equals("1") 
-                   && ((mAppEntry.info.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0 ||
-                   (mAppEntry.info.flags & ApplicationInfo.FLAG_SDEXT_STORAGE) == 0)) {
+        } else if ((mAppEntry.info.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0 ||
+                   (mAppEntry.info.flags & ApplicationInfo.FLAG_SDEXT_STORAGE) == 0) {
             mMoveAppButtonR.setText(R.string.move_app_to_sdext);
             // Always let apps move to internal storage from sdcard.
             moveDisable = false;
@@ -275,7 +278,7 @@ public class InstalledAppDetails extends Activity
         }
         boolean allowMoveAllApps = android.provider.Settings.Secure.getInt(getContentResolver(),
                 android.provider.Settings.Secure.ALLOW_MOVE_ALL_APPS_EXTERNAL, 1) == 1;
-        if (!allowMoveAllApps && moveDisable || (mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+        if (!allowMoveAllApps && moveDisable || !mEnableSdExt || (mAppEntry.info.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
             mMoveAppButtonR.setEnabled(false);
          } else {
             mMoveAppButtonR.setOnClickListener(this);
@@ -340,7 +343,8 @@ public class InstalledAppDetails extends Activity
         mUsbManager = IUsbManager.Stub.asInterface(b);
 
         mCanBeOnSdCardChecker = new CanBeOnSdCardChecker();
-        
+        mEnableSdExt = SystemProperties.get("magpie.a2sd.active","0").equals("1");
+
         setContentView(R.layout.installed_app_details);
         
         mComputingStr = getText(R.string.computing_size);
@@ -362,7 +366,11 @@ public class InstalledAppDetails extends Activity
         View move_buttons_panel = findViewById(R.id.move_buttons_panel);
         mMoveAppButtonL = (Button) move_buttons_panel.findViewById(R.id.left_button);
         mMoveAppButtonR = (Button) move_buttons_panel.findViewById(R.id.right_button);
-        
+        if (!mEnableSdExt) {
+            mMoveAppButtonR.setText(R.string.move_app_to_sdext);
+            mMoveAppButtonR.setEnabled(false);
+        }
+
         // Cache section
         mCacheSize = (TextView) findViewById(R.id.cache_size_text);
         mClearCacheButton = (Button) findViewById(R.id.clear_cache_button);
@@ -598,8 +606,10 @@ public class InstalledAppDetails extends Activity
         } else {
             mMoveAppButtonL.setText(R.string.moving);
             mMoveAppButtonL.setEnabled(false);
-            mMoveAppButtonR.setText(R.string.moving);
-            mMoveAppButtonR.setEnabled(false);
+            if (mEnableSdExt) {
+                mMoveAppButtonR.setText(R.string.moving);
+                mMoveAppButtonR.setEnabled(false);
+            }
             mUninstallButton.setEnabled(false);
         }
     }
@@ -863,14 +873,16 @@ public class InstalledAppDetails extends Activity
             refreshButtons();
             mPm.movePackage(mAppEntry.info.packageName, mPackageMoveObserver, moveFlags);
         } else if (v == mMoveAppButtonR) {
-            if (mPackageMoveObserver == null) {
-                mPackageMoveObserver = new PackageMoveObserver();
+            if (mEnableSdExt) {
+                if (mPackageMoveObserver == null) {
+                    mPackageMoveObserver = new PackageMoveObserver();
+                }
+                int moveFlags = (MoveToSdExt ?
+                        PackageManager.MOVE_SDEXT : PackageManager.MOVE_INTERNAL);
+                mMoveInProgress = true;
+                refreshButtons();
+                mPm.movePackage(mAppEntry.info.packageName, mPackageMoveObserver, moveFlags);
             }
-        mMoveInProgress = true;
-        refreshButtons();
-        mPm.movePackage(mAppEntry.info.packageName,
-                        mPackageMoveObserver,
-                        MoveToSdExt ? PackageManager.MOVE_SDEXT : PackageManager.MOVE_INTERNAL);
         }
     }
 }
