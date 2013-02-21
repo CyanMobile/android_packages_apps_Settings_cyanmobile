@@ -46,6 +46,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.text.format.Formatter;
 import android.util.Log;
@@ -260,8 +261,9 @@ public class InstalledAppDetails extends Activity
         boolean moveDisable = true;
         if (dataOnly) {
             mMoveAppButtonL.setText(R.string.move_app);
-        } else if ((mAppEntry.info.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0 ||
-                   (mAppEntry.info.flags & ApplicationInfo.FLAG_SDEXT_STORAGE) == 0) {
+        } else if (SystemProperties.get("magpie.a2sd.active","0").equals("1") 
+                   && ((mAppEntry.info.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0 ||
+                   (mAppEntry.info.flags & ApplicationInfo.FLAG_SDEXT_STORAGE) == 0)) {
             mMoveAppButtonR.setText(R.string.move_app_to_sdext);
             // Always let apps move to internal storage from sdcard.
             moveDisable = false;
