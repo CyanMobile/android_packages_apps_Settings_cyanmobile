@@ -344,6 +344,7 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
         mSmsSecurityCheck.setValue(String.valueOf(smsSecurityCheck));
         mSmsSecurityCheck.setOnPreferenceChangeListener(this);
         updateSmsSecuritySummary(smsSecurityCheck);
+        updateToggles();
         return root;
     }
 
@@ -502,14 +503,12 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
             boolean enabled = mGps.isChecked();
             Settings.Secure.setLocationProviderEnabled(getContentResolver(),
                     LocationManager.GPS_PROVIDER, enabled);
-
-            //{PIAF - Send update of GPS status
+            if (Settings.Secure.getInt(getContentResolver(), Settings.Secure.ASSISTED_GPS_ENABLED, 0) == 1) {
+                Settings.Secure.putInt(getContentResolver(), Settings.Secure.ASSISTED_GPS_ENABLED, 0);
+            }
+            mAssistedGps.setEnabled(enabled);
             Intent gpsStatus = new Intent(GPS_STATUS_CHANGED);
             this.sendBroadcast(gpsStatus);
-            //PIAF}
-            if (mAssistedGps != null) {
-                mAssistedGps.setEnabled(enabled);
-            }
         } else if (preference == mAssistedGps) {
             Settings.Secure.putInt(getContentResolver(), Settings.Secure.ASSISTED_GPS_ENABLED,
                     mAssistedGps.isChecked() ? 1 : 0);
@@ -528,11 +527,9 @@ public class SecuritySettings extends PreferenceActivity implements OnPreference
         mNetwork.setChecked(Settings.Secure.isLocationProviderEnabled(
                 res, LocationManager.NETWORK_PROVIDER));
         mGps.setChecked(gpsEnabled);
-        if (mAssistedGps != null) {
-            mAssistedGps.setChecked(Settings.Secure.getInt(res,
-                    Settings.Secure.ASSISTED_GPS_ENABLED, 2) == 1);
-            mAssistedGps.setEnabled(gpsEnabled);
-        }
+        mAssistedGps.setChecked(Settings.Secure.getInt(res,
+                    Settings.Secure.ASSISTED_GPS_ENABLED, 1) == 1);
+        mAssistedGps.setEnabled(gpsEnabled);
     }
 
     private boolean isToggled(Preference pref) {
