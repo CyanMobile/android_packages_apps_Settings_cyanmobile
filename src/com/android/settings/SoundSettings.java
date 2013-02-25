@@ -423,24 +423,21 @@ public class SoundSettings extends PreferenceActivity implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist emergency tone setting", e);
             }
-            return true;
         } else if (preference == mVibrate) {
             setPhoneVibrateSettingValue(objValue.toString());
             updateState(false);
-            return true;
         } else if (preference == mAnnoyingNotifications) {
             int val = Integer.parseInt((String) objValue);
             Settings.System.putInt(getContentResolver(),
                 Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
-            return true;
         } else if (preference == mVolumeOverlay) {
             final int value = Integer.valueOf((String) objValue);
             final int index = mVolumeOverlay.findIndexOfValue((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MODE_VOLUME_OVERLAY, value);
             mVolumeOverlay.setSummary(mVolumeOverlay.getEntries()[index]);
-            return true;
         }
-        return false;
+
+        return true;
     }
 }
