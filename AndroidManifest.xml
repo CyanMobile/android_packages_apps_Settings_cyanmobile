@@ -972,6 +972,14 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".cube.CubeActivity"
+                android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <service android:name="com.android.settings.GfxEngineRelayService">
             <intent-filter>
                 <action android:name="com.authentec.KeyguardSettings" />

@@ -88,7 +88,9 @@ public class DeviceInfoSettings extends PreferenceActivity {
         findPreference("firmware_version").setEnabled(true);
         setValueSummary("baseband_version", "gsm.version.baseband");
         setStringSummary("device_model", Build.MODEL);
+        findPreference("mod_build").setEnabled(true);
         setStringSummary("mod_build", SystemProperties.get("ro.build.user", "Squadzone"));
+        findPreference("build_number").setEnabled(true);
         setStringSummary("build_number", "CyanMobile X");
         findPreference("kernel_version").setSummary(getFormattedKernelVersion());
         setValueSummary("mod_version", "ro.cm.version");
@@ -147,6 +149,19 @@ public class DeviceInfoSettings extends PreferenceActivity {
                 }
                 try {
                     startActivity(intent);
+                } catch (Exception e) {
+                }
+            }
+        } else if (preference.getKey().equals("mod_build")
+                || preference.getKey().equals("build_number")) {
+            System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
+            mHits[mHits.length-1] = SystemClock.uptimeMillis();
+            if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
+                Intent intenta = new Intent(Intent.ACTION_MAIN);
+                intenta.setClassName("com.android.settings", "com.android.settings.cube.CubeActivity");
+                intenta.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                try {
+                    startActivity(intenta);
                 } catch (Exception e) {
                 }
             }
