@@ -41,4 +41,17 @@
                 android:persistent="false"
                 android:entries="@array/screen_timeout_entries"
                 android:entryValues="@array/screen_timeout_values" />
+
+        <CheckBoxPreference
+            android:key="screensaver_enable"
+            android:title="@string/screensaver_enable_title"/>
+
+        <ListPreference
+                android:key="screensaver_timeout"
+                android:dependency="screensaver_enable"
+                android:title="@string/screensaver_timeout"
+                android:summary="@string/screensaver_timeout_summary"
+                android:persistent="false"
+                android:entries="@array/screen_timeout_entries"
+                android:entryValues="@array/screen_timeout_values" />
 </PreferenceScreen>

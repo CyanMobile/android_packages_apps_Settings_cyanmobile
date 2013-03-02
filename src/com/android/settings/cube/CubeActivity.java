@@ -3,6 +3,10 @@ package com.android.settings.cube;
 import java.util.Random;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
@@ -246,6 +250,7 @@ public class CubeActivity extends Activity implements KubeRenderer.AnimationCall
             @Override
             public void onClick(View v) {
                 mToast.show();
+                finish();
             }
         });
 		
@@ -257,6 +262,30 @@ public class CubeActivity extends Activity implements KubeRenderer.AnimationCall
 		super.onResume();
 		mView.onResume();
 	}
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        IntentFilter s = new IntentFilter();
+        s.addAction(Intent.ACTION_SCREEN_ON);
+        s.addAction(Intent.ACTION_SCREEN_OFF);
+        registerReceiver(mScreenTimeoutListener, new IntentFilter(s));
+    }
+
+    @Override
+    public void onStop() {
+        unregisterReceiver(mScreenTimeoutListener);
+        super.onStop();
+    }
+
+    private BroadcastReceiver mScreenTimeoutListener = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
+                finish();
+            }
+        }
+    };
 
 	@Override
 	protected void onPause() {

@@ -17,6 +17,7 @@
 package com.android.settings;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
+import static android.provider.Settings.Secure.SCREENSAVER_TIMEOUT;
 
 import java.util.ArrayList;
 
@@ -41,13 +42,17 @@ public class DisplaySettings extends PreferenceActivity implements
 
     /** If there is no setting in the provider, use this. */
     private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
+    private static final int FALLBACK_SCREENSAVER_TIMEOUT_VALUE = 15000;
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
+    private static final String KEY_SCREENSAVER_TIMEOUT = "screensaver_timeout";
+    private static final String KEY_SCREENSAVER_ENABLE = "screensaver_enable";
     private static final String KEY_ANIMATIONS = "animations";
     private static final String KEY_ACCELEROMETER = "accelerometer";
 
     private ListPreference mAnimations;
     private CheckBoxPreference mAccelerometer;
+    private CheckBoxPreference mScreenSaver;
     private float[] mAnimationScales;
 
     private IWindowManager mWindowManager;
@@ -65,12 +70,22 @@ public class DisplaySettings extends PreferenceActivity implements
         mAccelerometer = (CheckBoxPreference) findPreference(KEY_ACCELEROMETER);
         mAccelerometer.setPersistent(false);
 
+        mScreenSaver = (CheckBoxPreference) findPreference(KEY_SCREENSAVER_ENABLE);
+        mScreenSaver.setPersistent(false);
+
         ListPreference screenTimeoutPreference =
             (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
         screenTimeoutPreference.setValue(String.valueOf(Settings.System.getInt(
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);
+
+        ListPreference screenSaverTimeoutPreference =
+            (ListPreference) findPreference(KEY_SCREENSAVER_TIMEOUT);
+        screenSaverTimeoutPreference.setValue(String.valueOf(Settings.System.getInt(
+                resolver, SCREENSAVER_TIMEOUT, FALLBACK_SCREENSAVER_TIMEOUT_VALUE)));
+        screenSaverTimeoutPreference.setOnPreferenceChangeListener(this);
+        disableUnusableSaverTimeouts(screenSaverTimeoutPreference);
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
@@ -106,6 +121,41 @@ public class DisplaySettings extends PreferenceActivity implements
             }
         }
         screenTimeoutPreference.setEnabled(revisedEntries.size() > 0);
+    }
+
+    private void disableUnusableSaverTimeouts(ListPreference screenSaverTimeoutPreference) {
+        final DevicePolicyManager dpm =
+            (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+        final long maxTimeout = dpm != null ? dpm.getMaximumTimeToLock(null) : 0;
+        if (maxTimeout == 0) {
+            return; // policy not enforced
+        }
+        final CharSequence[] entries = screenSaverTimeoutPreference.getEntries();
+        final CharSequence[] values = screenSaverTimeoutPreference.getEntryValues();
+        ArrayList<CharSequence> revisedEntries = new ArrayList<CharSequence>();
+        ArrayList<CharSequence> revisedValues = new ArrayList<CharSequence>();
+        for (int i = 0; i < values.length; i++) {
+            long timeout = Long.valueOf(values[i].toString());
+            if (timeout <= maxTimeout) {
+                revisedEntries.add(entries[i]);
+                revisedValues.add(values[i]);
+            }
+        }
+        if (revisedEntries.size() != entries.length || revisedValues.size() != values.length) {
+            screenSaverTimeoutPreference.setEntries(
+                    revisedEntries.toArray(new CharSequence[revisedEntries.size()]));
+            screenSaverTimeoutPreference.setEntryValues(
+                    revisedValues.toArray(new CharSequence[revisedValues.size()]));
+            final int userPreference = Integer.valueOf(screenSaverTimeoutPreference.getValue());
+            if (userPreference <= maxTimeout) {
+                screenSaverTimeoutPreference.setValue(String.valueOf(userPreference));
+            } else {
+                // There will be no highlighted selection since nothing in the list matches
+                // maxTimeout. The user can still select anything less than maxTimeout.
+                // TODO: maybe append maxTimeout to the list and mark selected.
+            }
+        }
+        screenSaverTimeoutPreference.setEnabled(revisedEntries.size() > 0);
     }
 
     @Override
@@ -144,6 +194,8 @@ public class DisplaySettings extends PreferenceActivity implements
         mAccelerometer.setChecked(Settings.System.getInt(
                 getContentResolver(),
                 Settings.System.ACCELEROMETER_ROTATION, 0) != 0);
+        mScreenSaver.setChecked(Settings.Secure.getInt(getContentResolver(),
+                    Settings.Secure.SCREENSAVER_ENABLED, 1) != 0);
     }
 
     private void updateAnimationsSummary(Object value) {
@@ -164,6 +216,10 @@ public class DisplaySettings extends PreferenceActivity implements
         if (preference == mAccelerometer) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.ACCELEROMETER_ROTATION,
+                    mAccelerometer.isChecked() ? 1 : 0);
+        } else if (preference == mScreenSaver) {
+            Settings.Secure.putInt(getContentResolver(),
+                    Settings.Secure.SCREENSAVER_ENABLED,
                     mAccelerometer.isChecked() ? 1 : 0);
         }
         return true;
@@ -199,7 +255,15 @@ public class DisplaySettings extends PreferenceActivity implements
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
         }
-
+        if (KEY_SCREENSAVER_TIMEOUT.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                Settings.Secure.putInt(getContentResolver(),
+                        SCREENSAVER_TIMEOUT, value);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist screen timeout setting", e);
+            }
+        }
         return true;
     }
 }
