@@ -82,7 +82,7 @@ public class DisplaySettings extends PreferenceActivity implements
 
         ListPreference screenSaverTimeoutPreference =
             (ListPreference) findPreference(KEY_SCREENSAVER_TIMEOUT);
-        screenSaverTimeoutPreference.setValue(String.valueOf(Settings.System.getInt(
+        screenSaverTimeoutPreference.setValue(String.valueOf(Settings.Secure.getInt(
                 resolver, SCREENSAVER_TIMEOUT, FALLBACK_SCREENSAVER_TIMEOUT_VALUE)));
         screenSaverTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableSaverTimeouts(screenSaverTimeoutPreference);
