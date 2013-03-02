@@ -220,7 +220,7 @@ public class DisplaySettings extends PreferenceActivity implements
         } else if (preference == mScreenSaver) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.SCREENSAVER_ENABLED,
-                    mAccelerometer.isChecked() ? 1 : 0);
+                    mScreenSaver.isChecked() ? 1 : 0);
         }
         return true;
     }
