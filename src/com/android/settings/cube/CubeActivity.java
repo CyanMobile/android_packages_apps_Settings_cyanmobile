@@ -17,6 +17,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +26,8 @@ import android.widget.Toast;
 public class CubeActivity extends Activity implements KubeRenderer.AnimationCallback {
 	
 	Toast mToast;
-	
+	private boolean shouldFinish = false;
+
 	private GLWorld makeGLWorld() {
 		GLWorld world = new GLWorld();
 		int one = 0x10000;
@@ -250,7 +252,7 @@ public class CubeActivity extends Activity implements KubeRenderer.AnimationCall
             @Override
             public void onClick(View v) {
                 mToast.show();
-                finish();
+                shouldFinish = true;
             }
         });
 		
@@ -270,6 +272,12 @@ public class CubeActivity extends Activity implements KubeRenderer.AnimationCall
         s.addAction(Intent.ACTION_SCREEN_ON);
         s.addAction(Intent.ACTION_SCREEN_OFF);
         registerReceiver(mScreenTimeoutListener, new IntentFilter(s));
+
+        getWindow().addFlags(
+                  WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                | WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
+                | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                );
     }
 
     @Override
@@ -292,6 +300,13 @@ public class CubeActivity extends Activity implements KubeRenderer.AnimationCall
 		super.onPause();
 		mView.onPause();
 	}
+
+    @Override
+    public void onUserInteraction() {
+        if (shouldFinish) {
+            finish();
+        }
+    }
 
 	public void animate() {
 		// change our angle of view
