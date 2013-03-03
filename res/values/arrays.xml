@@ -104,6 +104,7 @@
     <string-array name="screensaver_custom_entries">
         <item>Cube</item>
         <item>Clock</item>
+        <item>Rocket Launcher</item>
     </string-array>
 
     <!-- Do not translate. -->
@@ -112,6 +113,8 @@
         <item>com.android.settings/com.android.settings.cube.CubeActivity</item>
         <!-- Do not translate. -->
         <item>com.android.deskclock/com.android.deskclock.Screensaver</item>
+        <!-- Do not translate. -->
+        <item>com.wordpress.chislonchow.legacylauncher/com.wordpress.chislonchow.legacylauncher.RocketLauncher</item>
     </string-array>
 
     <!-- Security settings.  The delay after screen is turned off until device locks. 
