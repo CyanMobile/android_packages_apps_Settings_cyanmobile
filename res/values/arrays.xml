@@ -101,6 +101,19 @@
         <item>1800000</item>
     </string-array>
 
+    <string-array name="screensaver_custom_entries">
+        <item>Cube</item>
+        <item>Clock</item>
+    </string-array>
+
+    <!-- Do not translate. -->
+    <string-array name="screensaver_custom_values" translatable="false">
+        <!-- Do not translate. -->
+        <item>com.android.settings/com.android.settings.cube.CubeActivity</item>
+        <!-- Do not translate. -->
+        <item>com.android.deskclock/com.android.deskclock.Screensaver</item>
+    </string-array>
+
     <!-- Security settings.  The delay after screen is turned off until device locks. 
          These are shown in a list dialog. -->
     <string-array name="lock_after_timeout_entries">

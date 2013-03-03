@@ -54,4 +54,13 @@
                 android:persistent="false"
                 android:entries="@array/screen_timeout_entries"
                 android:entryValues="@array/screen_timeout_values" />
+
+        <ListPreference
+                android:key="screensaver_custom"
+                android:dependency="screensaver_enable"
+                android:title="@string/screensaver_custom"
+                android:summary="@string/screensaver_custom_summary"
+                android:persistent="false"
+                android:entries="@array/screensaver_custom_entries"
+                android:entryValues="@array/screensaver_custom_values" />
 </PreferenceScreen>

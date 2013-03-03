@@ -49,8 +49,10 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final String KEY_SCREENSAVER_ENABLE = "screensaver_enable";
     private static final String KEY_ANIMATIONS = "animations";
     private static final String KEY_ACCELEROMETER = "accelerometer";
+    private static final String KEY_SCREENSAVER_CUSTOM = "screensaver_custom";
 
     private ListPreference mAnimations;
+    private ListPreference mWhatScreenSaver;
     private CheckBoxPreference mAccelerometer;
     private CheckBoxPreference mScreenSaver;
     private float[] mAnimationScales;
@@ -86,6 +88,18 @@ public class DisplaySettings extends PreferenceActivity implements
                 resolver, SCREENSAVER_TIMEOUT, FALLBACK_SCREENSAVER_TIMEOUT_VALUE)));
         screenSaverTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableSaverTimeouts(screenSaverTimeoutPreference);
+
+        mWhatScreenSaver = (ListPreference) findPreference(KEY_SCREENSAVER_CUSTOM);
+        String whatSS = Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.SCREENSAVER_COMPONENT);
+        if (whatSS == null) {
+            whatSS = "com.android.settings/com.android.settings.cube.CubeActivity";
+            Settings.Secure.putString(getContentResolver(),
+                    Settings.Secure.SCREENSAVER_COMPONENT,
+		    whatSS);
+	}
+        mWhatScreenSaver.setValue(String.valueOf(whatSS));
+        mWhatScreenSaver.setOnPreferenceChangeListener(this);
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
@@ -263,6 +277,12 @@ public class DisplaySettings extends PreferenceActivity implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
+        }
+        if (KEY_SCREENSAVER_CUSTOM.equals(key)) {
+            String value = String.valueOf(objValue);
+            Settings.Secure.putString(getContentResolver(),
+                    Settings.Secure.SCREENSAVER_COMPONENT,
+		    value);
         }
         return true;
     }

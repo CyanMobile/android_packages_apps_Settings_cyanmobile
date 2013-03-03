@@ -1259,6 +1259,10 @@
     <!-- Sound & display settings screen, setting option summary to change screen timeout -->
     <string name="screensaver_timeout_summary">Adjust the delay to launch ScreenSaver before screen timeout</string>
 
+    <string name="screensaver_custom">ScreenSaver chooser</string>
+    <!-- Sound & display settings screen, setting option summary to change screen timeout -->
+    <string name="screensaver_custom_summary">Choose what to display as ScreenSaver</string>
+
     <!-- SIM lock settings title -->
     <string name="sim_lock_settings">SIM card lock settings</string>
     <!-- Security & location settings screen, setting option name -->
